@@ -1,12 +1,9 @@
-import { CiBookmarkCheck } from "react-icons/ci";
 import UserTag from "../../Components/userData/userData";
 import { Link } from "react-router-dom";
 import { BiCategory } from "react-icons/bi";
-import { FaBed, FaBookmark, FaUsers } from "react-icons/fa6";
-import { MdBookmark, MdBookmarks, MdFeedback } from "react-icons/md";
+import { FaBed, FaUsers } from "react-icons/fa6";
+import { MdBookmarks, MdFeedback } from "react-icons/md";
 import { GrGallery } from "react-icons/gr";
-import "./admin-page.css"
-import { IoBookmark } from "react-icons/io5";
 
 export default function AdminPage() {
   return (
