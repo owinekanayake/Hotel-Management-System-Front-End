@@ -11,6 +11,11 @@ export default function LoginPage() {
       password: password,
     }).then((res)=>{
         console.log(res);
+        localStorage.setItem("token",res.data.token)
+        const token = localStorage.getItem("token")
+
+        console.log(token);
+        
     }).catch((err)=>{
         console.log(err);
     })
