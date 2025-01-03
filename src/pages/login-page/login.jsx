@@ -1,12 +1,19 @@
 import { useState } from "react";
 import "./login.css";
+import axios from "axios";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin(){
-    console.log(email,password);
-    
+  function handleLogin() {
+    axios.post("http://localhost:3000/api/user/login", {
+      email: email,
+      password: password,
+    }).then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log(err);
+    })
   }
 
   return (
