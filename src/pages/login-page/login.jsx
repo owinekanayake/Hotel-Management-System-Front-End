@@ -6,16 +6,18 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   function handleLogin() {
-    axios.post("http://localhost:3000/api/user/login", {
+    axios.post(import.meta.env.VITE_BACKEND_URL+"/api/user/login", {
       email: email,
       password: password,
     }).then((res)=>{
         console.log(res);
         localStorage.setItem("token",res.data.token)
-        const token = localStorage.getItem("token")
-
-        console.log(token);
         
+        if (res.data.user.type == "customer") {
+          window.location.href = "/"
+        }else if(res.data.user.type == "admin"){
+          window.location.href = "/admin"
+        } 
     }).catch((err)=>{
         console.log(err);
     })
