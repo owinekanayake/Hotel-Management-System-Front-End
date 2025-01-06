@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function CategoriesPage() {
+
+  
   const [categories, setCategories] = useState([]);
 
   const[categoriesIsLoaded,setCategoriesIsLoaded] = useState(false)

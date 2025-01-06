@@ -1,9 +1,10 @@
 import UserTag from "../../Components/userData/userData";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { BiCategory } from "react-icons/bi";
 import { FaBed, FaUsers } from "react-icons/fa6";
 import { MdBookmarks, MdFeedback } from "react-icons/md";
 import { GrGallery } from "react-icons/gr";
+import CategoriesPage from "../admin/categories/categories";
 
 export default function AdminPage() {
   return (
@@ -25,7 +26,7 @@ export default function AdminPage() {
 
         <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <BiCategory size={35} />
-          <Link className="text-white font-bold text-[22px] -tracking-tight pl-6">
+          <Link to="/admin/categories" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Categories
           </Link>
         </div>
@@ -60,7 +61,10 @@ export default function AdminPage() {
       </div>
 
       <div className="w-[74%] bg-red-400 flex flex-col h-[85%] mt-20 ml-5">
-
+        
+        <Routes path= "/*">
+            <Route path="categories" element={<CategoriesPage/>}></Route>
+        </Routes>
       </div>
     </div>
   );
