@@ -7,6 +7,7 @@ import { GrGallery } from "react-icons/gr";
 import CategoriesPage from "../admin/categories/adminCategories";
 import AdminBooking from "../admin/booking/adminBooking";
 import AdminFeedback from "../admin/feedback/feedback";
+import AdminGalleryItem from "../admin/galleryItem.jsx/galleryItem";
 
 export default function AdminPage() {
   return (
@@ -56,7 +57,7 @@ export default function AdminPage() {
 
         <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <GrGallery size={35} />
-          <Link className="text-white font-bold text-[22px] -tracking-tight pl-6">
+          <Link to="/admin/gallery-item" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Gallery Item
           </Link>
         </div>
@@ -68,6 +69,7 @@ export default function AdminPage() {
           <Route path="bookings" element={<AdminBooking/>}></Route>
           <Route path="categories" element={<CategoriesPage/>}></Route>
           <Route path="feedback" element={<AdminFeedback/>}></Route>
+          <Route path="gallery-item" element={<AdminGalleryItem/>}></Route>
         </Routes>
       </div>
     </div>
