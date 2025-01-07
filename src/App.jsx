@@ -3,7 +3,7 @@ import HomePage from "./pages/client-page/homePage";
 import AdminPage from "./pages/admin-page/admin-page";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login-page/login";
-import CategoriesPage from "./pages/admin/categories/categories";
+import CategoriesPage from "./pages/admin/categories/adminCategories";
 import TestComponent from "./pages/client-page/test";
 function App() {
   return (

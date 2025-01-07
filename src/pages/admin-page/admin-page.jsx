@@ -4,7 +4,7 @@ import { BiCategory } from "react-icons/bi";
 import { FaBed, FaUsers } from "react-icons/fa6";
 import { MdBookmarks, MdFeedback } from "react-icons/md";
 import { GrGallery } from "react-icons/gr";
-import CategoriesPage from "../admin/categories/categories";
+import CategoriesPage from "../admin/categories/adminCategories";
 
 export default function AdminPage() {
   return (
