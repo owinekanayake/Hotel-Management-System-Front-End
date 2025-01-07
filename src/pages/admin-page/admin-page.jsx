@@ -21,43 +21,43 @@ export default function AdminPage() {
         <UserTag />
       </div>
 
-      <div className="w-[22%] bg-[#608BC1] flex flex-col mt-20 ml-5 h-[85%] rounded-lg">
-        <div className="flex items-center pt-3 pl-8 mt-14 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+      <div className="w-[18%] bg-[#608BC1] flex flex-col mt-20 ml-5 h-[85%] rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-14 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <MdBookmarks size={35} />
           <Link to="/admin/bookings" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Bookings
           </Link>
         </div>
 
-        <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <BiCategory size={35} />
           <Link to="/admin/categories" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Categories
           </Link>
         </div>
 
-        <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <FaBed size={35} />
           <Link to="/admin/rooms" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Rooms
           </Link>
         </div>
 
-        <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <FaUsers size={35} />
           <Link to="/admin/users" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Users
           </Link>
         </div>
 
-        <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <MdFeedback size={35} />
           <Link to="/admin/feedback" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Feedback
           </Link>
         </div>
 
-        <div className="flex items-center pt-3 pl-8 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
+        <div className="flex items-center pt-3 pl-3 mt-4 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <GrGallery size={35} />
           <Link to="/admin/gallery-item" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Gallery Item
@@ -65,8 +65,11 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="w-[74%] bg-red-400 flex flex-col h-[85%] mt-20 ml-5">
+      <div className="w-[78%] flex flex-col h-[85%] mt-20 ml-5 ">
         
+        <div className="w-[100%] bg-black h-[10%] rounded-lg text-white items-center flex"><h1 className="ml-6 font-bold underline">Bookings</h1></div>
+        
+        <div className="w-[100%] bg-blue-700 h-[90%] mt-3">
         <Routes path= "/*">
           <Route path="bookings" element={<AdminBooking/>}></Route>
           <Route path="categories" element={<CategoriesPage/>}></Route>
@@ -76,6 +79,7 @@ export default function AdminPage() {
           <Route path="gallery-item" element={<AdminGalleryItem/>}></Route>
           <Route path="*" element={<h1 className="text-white">404: Page Not Found</h1>}></Route>
         </Routes>
+        </div>
       </div>
     </div>
   );
