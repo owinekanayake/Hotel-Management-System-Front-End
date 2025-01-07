@@ -67,9 +67,15 @@ export default function AdminPage() {
 
       <div className="w-[78%] flex flex-col h-[85%] mt-20 ml-5 ">
         
-        <div className="w-[100%] bg-black h-[10%] rounded-lg text-white items-center flex"><h1 className="ml-6 font-bold underline">Bookings</h1></div>
+        <div className="w-[100%] bg-[#608BC1] h-[10%] rounded-lg text-white items-center flex"><h1 className="ml-6 font-bold underline">Bookings</h1></div>
         
         <div className="w-[100%] bg-blue-700 h-[90%] mt-3">
+
+          <div className="w-100% bg-black h-[10%] flex">
+            
+          </div>
+        
+        <div className="w-[100%] bg-black h-[90%] rounded-lg mt-3">
         <Routes path= "/*">
           <Route path="bookings" element={<AdminBooking/>}></Route>
           <Route path="categories" element={<CategoriesPage/>}></Route>
@@ -79,6 +85,7 @@ export default function AdminPage() {
           <Route path="gallery-item" element={<AdminGalleryItem/>}></Route>
           <Route path="*" element={<h1 className="text-white">404: Page Not Found</h1>}></Route>
         </Routes>
+        </div>
         </div>
       </div>
     </div>
