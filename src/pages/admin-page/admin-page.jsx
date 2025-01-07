@@ -5,6 +5,7 @@ import { FaBed, FaUsers } from "react-icons/fa6";
 import { MdBookmarks, MdFeedback } from "react-icons/md";
 import { GrGallery } from "react-icons/gr";
 import CategoriesPage from "../admin/categories/adminCategories";
+import AdminBooking from "../admin/booking/adminBooking";
 
 export default function AdminPage() {
   return (
@@ -19,7 +20,7 @@ export default function AdminPage() {
       <div className="w-[22%] bg-[#608BC1] flex flex-col mt-20 ml-5 h-[85%] rounded-lg">
         <div className="flex items-center pt-3 pl-8 mt-14 mx-6 pb-3 hover:bg-blue-700 cursor-pointer rounded-lg">
           <MdBookmarks size={35} />
-          <Link className="text-white font-bold text-[22px] -tracking-tight pl-6">
+          <Link to="/admin/bookings" className="text-white font-bold text-[22px] -tracking-tight pl-6">
             Bookings
           </Link>
         </div>
@@ -63,7 +64,8 @@ export default function AdminPage() {
       <div className="w-[74%] bg-red-400 flex flex-col h-[85%] mt-20 ml-5">
         
         <Routes path= "/*">
-            <Route path="categories" element={<CategoriesPage/>}></Route>
+          <Route path="bookings" element={<AdminBooking/>}></Route>
+          <Route path="categories" element={<CategoriesPage/>}></Route>
         </Routes>
       </div>
     </div>
