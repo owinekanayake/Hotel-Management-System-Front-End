@@ -74,6 +74,7 @@ export default function AdminPage() {
           <Route path="users" element={<AdminUsers/>}></Route>
           <Route path="feedback" element={<AdminFeedback/>}></Route>
           <Route path="gallery-item" element={<AdminGalleryItem/>}></Route>
+          <Route path="*" element={<h1 className="text-white">404: Page Not Found</h1>}></Route>
         </Routes>
       </div>
     </div>
