@@ -96,7 +96,7 @@ export default function AdminPage() {
       </div>
 
       <div className="w-[78%] flex flex-col h-[85%] mt-20 ml-5 ">
-        <div className="w-[100%] bg-[#608BC1] h-[10%] rounded-lg text-white items-center flex">
+        <div className="w-[100%] bg-[#9AA6B2] h-[10%] rounded-lg text-black items-center flex">
           <h1 className="ml-6 font-bold underline">Bookings</h1>
         </div>
 
@@ -125,7 +125,7 @@ export default function AdminPage() {
             
           </div>
 
-          <div className="w-[100%] bg-black h-[90%] rounded-lg mt-3">
+          <div className="w-[100%]  h-[88%]  mt-3 overflow-scroll">
             <Routes path="/*">
               <Route path="bookings" element={<AdminBooking />}></Route>
               <Route path="categories" element={<CategoriesPage />}></Route>
