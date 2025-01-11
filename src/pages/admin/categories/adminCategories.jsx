@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -18,7 +21,7 @@ export default function CategoriesPage() {
           console.log(err);
         });
     }
-  },[categoriesIsLoaded]);
+  }, [categoriesIsLoaded]);
 
   return (
     <div>
@@ -30,15 +33,20 @@ export default function CategoriesPage() {
             <th>Price</th>
             <th>Features</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody className="border border-black">
           {categories.length > 0 ? (
             categories.map((category, index) => (
               <tr className="h-28" key={index}>
-                <td className="border border-black w-[8%] text-center">{index + 1}</td>
+                <td className="border border-black w-[8%] text-center">
+                  {index + 1}
+                </td>
                 <td className="border border-black w-[15%]">{category.name}</td>
-                <td className="border border-black w-[10%] text-center">{category.price}</td>
+                <td className="border border-black w-[10%] text-center">
+                  {category.price}
+                </td>
                 <td className="border border-black w-[18%] text-center">
                   {category.features && category.features.length > 0 ? (
                     <ul className="list-disc pl-6 text-left">
@@ -50,7 +58,20 @@ export default function CategoriesPage() {
                     "No features"
                   )}
                 </td>
-                <td className="border border-black w-[36%]">{category.description}</td>
+                <td className="border border-black w-[36%]">
+                  {category.description}
+                </td>
+                <td className="border border-black">
+                  <button className="mx-4">
+                    <VisibilityIcon />
+                  </button>
+                  <button className="mx-2">
+                    <EditIcon />
+                  </button>
+                  <button className="mx-2">
+                    <DeleteIcon />
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
