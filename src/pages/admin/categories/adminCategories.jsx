@@ -7,6 +7,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
+  const token =localStorage.getItem("token");
+  if (token == null) {
+    window.location.href = "/login";
+  }
 
   useEffect(() => {
     if (!categoriesIsLoaded) {
@@ -22,6 +26,17 @@ export default function CategoriesPage() {
         });
     }
   }, [categoriesIsLoaded]);
+
+  function handleDelete(name){
+    console.log(name);
+    axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/category/"+name , {
+      headers: {
+        Authorization : "Bearer " + token
+      }
+    }).then((res)=>{
+      setCategoriesIsLoaded(false);
+    })
+  }
 
   return (
     <div>
@@ -62,13 +77,18 @@ export default function CategoriesPage() {
                   {category.description}
                 </td>
                 <td className="border border-black">
-                  <button className="mx-4">
+                  <button onClick={()=>{
+                    console.log("Owin");
+                    
+                  }} className="mx-4">
                     <VisibilityIcon />
                   </button>
-                  <button className="mx-2">
+                  <button onClick={()=>{}} className="mx-2">
                     <EditIcon />
                   </button>
-                  <button className="mx-2">
+                  <button onClick={()=>{
+                    handleDelete(category.name);
+                  }} className="mx-2">
                     <DeleteIcon />
                   </button>
                 </td>
