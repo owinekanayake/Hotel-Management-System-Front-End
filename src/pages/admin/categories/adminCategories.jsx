@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import toast from "react-hot-toast";
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -34,7 +35,10 @@ export default function CategoriesPage() {
         Authorization : "Bearer " + token
       }
     }).then((res)=>{
+      toast.success("Category deleted successfully");
       setCategoriesIsLoaded(false);
+    }).catch((err)=>{
+      toast.error("Failed to delete category");
     })
   }
 
