@@ -35,7 +35,7 @@ export default function CategoriesPage() {
         Authorization : "Bearer " + token
       }
     }).then((res)=>{
-      toast.success("Category deleted successfully");
+      toast.success(res.data.message);
       setCategoriesIsLoaded(false);
     }).catch((err)=>{
       toast.error("Failed to delete category");
