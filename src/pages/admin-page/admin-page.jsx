@@ -128,13 +128,13 @@ export default function AdminPage() {
 
           <div className="w-[100%] h-[88%]  mt-3 overflow-scroll">
             <Routes path="/*">
-              <Route path="bookings" element={<AdminBooking />}></Route>
-              <Route path="categories" element={<CategoriesPage />}></Route>
-              <Route path="add-category" element={<AddCategoryForm/>}></Route>
-              <Route path="rooms" element={<AdminRooms />}></Route>
-              <Route path="users" element={<AdminUsers />}></Route>
-              <Route path="feedback" element={<AdminFeedback />}></Route>
-              <Route path="gallery-item" element={<AdminGalleryItem />}></Route>
+              <Route path="/bookings" element={<AdminBooking />}></Route>
+              <Route path="/categories" element={<CategoriesPage />}></Route>
+              <Route path="/add-category" element={<AddCategoryForm/>}></Route>
+              <Route path="/rooms" element={<AdminRooms />}></Route>
+              <Route path="/users" element={<AdminUsers />}></Route>
+              <Route path="/feedback" element={<AdminFeedback />}></Route>
+              <Route path="/gallery-item" element={<AdminGalleryItem />}></Route>
               <Route
                 path="*"
                 element={<h1 className="text-white">404: Page Not Found</h1>}

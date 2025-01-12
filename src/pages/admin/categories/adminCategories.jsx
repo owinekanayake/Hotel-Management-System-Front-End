@@ -3,13 +3,18 @@ import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CategoriesPage() {
+  
+  
   const [categories, setCategories] = useState([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
-  const token =localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
   if (token == null) {
     window.location.href = "/login";
   }
@@ -29,23 +34,32 @@ export default function CategoriesPage() {
     }
   }, [categoriesIsLoaded]);
 
-  function handleDelete(name){
+  function handleDelete(name) {
     console.log(name);
-    axios.delete(import.meta.env.VITE_BACKEND_URL + "/api/category/"+name , {
-      headers: {
-        Authorization : "Bearer " + token
-      }
-    }).then((res)=>{
-      toast.success(res.data.message);
-      setCategoriesIsLoaded(false);
-    }).catch((err)=>{
-      toast.error("Failed to delete category");
-    })
+    axios
+      .delete(import.meta.env.VITE_BACKEND_URL + "/api/category/" + name, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setCategoriesIsLoaded(false);
+      })
+      .catch((err) => {
+        toast.error("Failed to delete category");
+      });
+  }
+  function handlePlusClick() {
+    navigate("/admin/add-category");
   }
 
   return (
     <div>
-      <button className="bg-[#608BC1] w-[50px] h-[50px] rounded-full justify-center items-center text-2xl fixed top-36 right-16">
+      <button  className="bg-[#608BC1] w-[50px] h-[50px] rounded-full justify-center items-center text-2xl fixed top-36 right-16"
+        onClick={()=>{
+          handlePlusClick()
+        }}>
         <AddIcon />
       </button>
       <table className="table-auto w-full ">
@@ -85,18 +99,23 @@ export default function CategoriesPage() {
                   {category.description}
                 </td>
                 <td className="border border-black">
-                  <button onClick={()=>{
-                    console.log("Owin");
-                    
-                  }} className="mx-4">
+                  <button
+                    onClick={() => {
+                      console.log("Owin");
+                    }}
+                    className="mx-4"
+                  >
                     <VisibilityIcon />
                   </button>
-                  <button onClick={()=>{}} className="mx-2">
+                  <button onClick={() => {}} className="mx-2">
                     <EditIcon />
                   </button>
-                  <button onClick={()=>{
-                    handleDelete(category.name);
-                  }} className="mx-2">
+                  <button
+                    onClick={() => {
+                      handleDelete(category.name);
+                    }}
+                    className="mx-2"
+                  >
                     <DeleteIcon />
                   </button>
                 </td>
