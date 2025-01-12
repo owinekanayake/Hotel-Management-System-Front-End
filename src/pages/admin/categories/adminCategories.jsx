@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import AddIcon from '@mui/icons-material/Add';
 import toast from "react-hot-toast";
 
 export default function CategoriesPage() {
@@ -44,6 +45,9 @@ export default function CategoriesPage() {
 
   return (
     <div>
+      <button className="bg-[#608BC1] w-[50px] h-[50px] rounded-full justify-center items-center text-2xl fixed top-36 right-16">
+        <AddIcon />
+      </button>
       <table className="table-auto w-full ">
         <thead className="h-14 bg-[#608BC1]">
           <tr>
