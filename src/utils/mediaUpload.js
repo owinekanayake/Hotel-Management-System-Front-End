@@ -9,11 +9,11 @@ export default function uploadMedia(file){
     }
 
     const fileRef = ref(storage, file.name);
-    uploadBytes(fileRef,file).then((snapshot)=>{
-        getDownloadURL(snapshot.ref).then((url)=>{
-            console.log(url);
-        })
-        
-    })
+    return uploadBytes(fileRef,file)
+    
 }
-
+/*.then((snapshot)=>{
+    getDownloadURL(snapshot.ref).then((url)=>{
+        console.log(url);
+    })
+})*/
