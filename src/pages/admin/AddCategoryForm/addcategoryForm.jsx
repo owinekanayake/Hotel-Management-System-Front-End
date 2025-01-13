@@ -1,6 +1,7 @@
 import { useState } from "react";
 import uploadMedia from "../../../utils/mediaUpload";
 import { getDownloadURL } from "firebase/storage";
+import axios from "axios";
 
 export default function AddCategoryForm() {
   const [name, setName] = useState("");
@@ -8,6 +9,7 @@ export default function AddCategoryForm() {
   const [features, setFeatures] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const[isLoading, setIsLoading] = useState(false);
 
   const token = localStorage.getItem("token");
   if(token == null){
@@ -16,11 +18,27 @@ export default function AddCategoryForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log({ name, price, features, description, image });
+    setIsLoading(true);
+    const featuresArray = features.split(",");
+    
     uploadMedia(image).then((snapshot)=>{
         getDownloadURL(snapshot.ref).then((url)=>{
-            console.log(url);
+            const categoryInfo = {
+                name: name,
+                price: price,
+                features: featuresArray,
+                description: description,
+                Image: url
+            }
+            
+            axios.post(import.meta.env.VITE_BACKEND_URL+"/api/category" , categoryInfo, {
+                headers: {
+                    Authorization: "Bearer "+token
+                }
+            }).then((res)=>{
+                console.log(res);
+                setIsLoading(false);
+            })
         })
     })
   };
@@ -89,9 +107,14 @@ export default function AddCategoryForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-500 p-2 rounded text-white hover:bg-blue-600"
+          className="w-full bg-blue-500 p-2 rounded text-white hover:bg-blue-600 flex justify-center"
         >
-          Submit
+            {
+                isLoading ?
+                <div className="border-t-2 border-t-white w-[20px] min-h-[20px] rounded-full animate-spin"></div>
+                :
+                <span>Add Category</span>
+            }
         </button>
       </form>
     </div>
