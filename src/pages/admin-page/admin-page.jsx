@@ -18,6 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { TextField } from "@mui/material";
 import AddCategoryForm from "../admin/AddCategoryForm/addcategoryForm";
+import UpdateCategoryForm from "../admin/UpdateCategoryForm/updateCategory";
 
 export default function AdminPage() {
   const [age, setAge] = React.useState(""); // State for Select component
@@ -131,6 +132,7 @@ export default function AdminPage() {
               <Route path="/bookings" element={<AdminBooking />}></Route>
               <Route path="/categories" element={<CategoriesPage />}></Route>
               <Route path="/add-category" element={<AddCategoryForm/>}></Route>
+              <Route path="/update-category" element={<UpdateCategoryForm/>}></Route>
               <Route path="/rooms" element={<AdminRooms />}></Route>
               <Route path="/users" element={<AdminUsers />}></Route>
               <Route path="/feedback" element={<AdminFeedback />}></Route>
