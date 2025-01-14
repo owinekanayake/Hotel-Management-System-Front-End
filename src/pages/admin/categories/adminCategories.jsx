@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CategoriesPage() {
   
@@ -107,9 +107,11 @@ export default function CategoriesPage() {
                   >
                     <VisibilityIcon />
                   </button>
-                  <button onClick={() => {}} className="mx-2">
+                  <Link className="mx-2"
+                  to={"/admin/update-category"}
+                  state={category}>
                     <EditIcon />
-                  </button>
+                  </Link>
                   <button
                     onClick={() => {
                       handleDelete(category.name);

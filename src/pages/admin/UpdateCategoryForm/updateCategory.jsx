@@ -2,6 +2,7 @@ import { useState } from "react";
 import uploadMedia from "../../../utils/mediaUpload";
 import { getDownloadURL } from "firebase/storage";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export default function UpdateCategoryForm() {
   const [name, setName] = useState("");
@@ -11,7 +12,10 @@ export default function UpdateCategoryForm() {
   const [image, setImage] = useState(null);
   const[isLoading, setIsLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const location = useLocation();
+  console.log(location.state);
+  
+const token = localStorage.getItem("token");
   if(token == null){
     window.location.href = "/login";
   }
