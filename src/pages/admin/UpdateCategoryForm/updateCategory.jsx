@@ -2,21 +2,27 @@ import { useState } from "react";
 import uploadMedia from "../../../utils/mediaUpload";
 import { getDownloadURL } from "firebase/storage";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function UpdateCategoryForm() {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [features, setFeatures] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-  const[isLoading, setIsLoading] = useState(false);
-
   const location = useLocation();
+
+  if (location.state == null) {
+    window.location.href = "/admin/categories";
+  }
+
+  const [name, setName] = useState(location.state.name);
+  const [price, setPrice] = useState(location.state.price);
+  const [features, setFeatures] = useState(location.state.features.join(","));
+  const [description, setDescription] = useState(location.state.description);
+  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   console.log(location.state);
-  
-const token = localStorage.getItem("token");
-  if(token == null){
+
+  const token = localStorage.getItem("token");
+  if (token == null) {
     window.location.href = "/login";
   }
 
@@ -24,27 +30,58 @@ const token = localStorage.getItem("token");
     e.preventDefault();
     setIsLoading(true);
     const featuresArray = features.split(",");
-    
-    uploadMedia(image).then((snapshot)=>{
-        getDownloadURL(snapshot.ref).then((url)=>{
-            const categoryInfo = {
-                name: name,
-                price: price,
-                features: featuresArray,
-                description: description,
-                Image: url
+
+    if (image == null) {
+      const categoryInfo = {
+        name: name,
+        price: price,
+        features: featuresArray,
+        description: description,
+        Image: location.state.Image,
+      };
+      axios
+          .put(
+            import.meta.env.VITE_BACKEND_URL + "/api/category/"+name,
+            categoryInfo,
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
             }
-            
-            axios.post(import.meta.env.VITE_BACKEND_URL+"/api/category" , categoryInfo, {
-                headers: {
-                    Authorization: "Bearer "+token
-                }
-            }).then((res)=>{
-                console.log(res);
-                setIsLoading(false);
-            })
-        })
-    })
+          )
+          .then((res) => {
+            console.log(res);
+            setIsLoading(false);
+            toast.success("Category updated successfully");
+        });
+    }
+    uploadMedia(image).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        const categoryInfo = {
+          name: name,
+          price: price,
+          features: featuresArray,
+          description: description,
+          Image: url,
+        };
+
+        axios
+          .put(
+            import.meta.env.VITE_BACKEND_URL + "/api/category/"+name,
+            categoryInfo,
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res);
+            setIsLoading(false);
+            toast.success("Category updated successfully");
+          });
+      });
+    });
   };
 
   return (
@@ -61,6 +98,7 @@ const token = localStorage.getItem("token");
             placeholder="Enter category name"
             className="w-full p-2 rounded bg-white text-black"
             required
+            disabled
           />
         </div>
 
@@ -113,12 +151,11 @@ const token = localStorage.getItem("token");
           type="submit"
           className="w-full bg-blue-500 p-2 rounded text-white hover:bg-blue-600 flex justify-center"
         >
-            {
-                isLoading ?
-                <div className="border-t-2 border-t-white w-[20px] min-h-[20px] rounded-full animate-spin"></div>
-                :
-                <span>Update Category</span>
-            }
+          {isLoading ? (
+            <div className="border-t-2 border-t-white w-[20px] min-h-[20px] rounded-full animate-spin"></div>
+          ) : (
+            <span>Update Category</span>
+          )}
         </button>
       </form>
     </div>
