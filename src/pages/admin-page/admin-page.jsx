@@ -28,7 +28,7 @@ export default function AdminPage() {
   };
   return (
     <div className="w-full h-screen overflow-hidden  bg-[#D9D9D9] relative flex">
-      <div className="w-full bg-[#608BC1] h-14 flex items-center absolute">
+      <div className="w-full bg-[#608BC1] h-14 flex items-center absolute sm:[w-50px] ">
         <h1 className="text-black text-outline text-xl font-bold font-serif [text-shadow:2px_2px_4px_rgba(0,0,0,0.8)] ml-16">
           Pathayi Hotel & Resort
         </h1>
